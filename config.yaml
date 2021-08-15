@@ -1,0 +1,21 @@
+--- 
+subreddit: "dogs_bot_test"
+
+commands: 
+  - text: "!dogs"
+    response: "dogs response test"
+    asReply: false
+    sticky: true
+    flair: ""
+
+  - text: "!kibble"
+    response: "Consult vet for nutritional information"
+    asReply: false
+    sticky: true
+    flair: "coolFlairText"
+
+  - text: "!retractableLeash"
+    response: "Retractable leashes are not recommended"
+    asReply: false
+    sticky: true
+    flair: ""
