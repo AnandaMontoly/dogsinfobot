@@ -55,8 +55,8 @@ def run_bot(r):
     #subredditName = config_data["subreddit"]
     print("waiting on posts")
     with open("posts.txt", mode="w+"):
-        for post in r.subreddit("dogs_bot_test").stream.submissions():
-            if post.subreddit == "dogs_bot_test":
+        for post in r.subreddit("dogs").stream.submissions():
+            if post.subreddit == "dogs":
                 newComment = post.reply(popular_post)
                 newComment.mod.distinguish(sticky=True)
 
