@@ -7,7 +7,6 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
     
-from config import *
 popular_post = """
 To all who have come from r/popular, welcome to r/Dogs! We are a discussion-based subreddit dedicated to support, inform, and advise dog owners.
 
@@ -52,10 +51,8 @@ def run_command(comment, response_dict):
                 return False
                 
 def run_bot(r):
-    #subredditName = config_data["subreddit"]
-    print("waiting on posts")
     with open("posts.txt", mode="w+"):
-        for post in r.subreddit("dogs").stream.submissions():
+        for post in r.subreddit("dogs").stream.submissions(skip_existing=True):
             if post.subreddit == "dogs":
                 newComment = post.reply(popular_post)
                 newComment.mod.distinguish(sticky=True)
