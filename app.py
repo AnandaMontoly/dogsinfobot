@@ -1,11 +1,5 @@
 import praw
 
-
-from yaml import load, dump
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper
-except ImportError:
-    from yaml import Loader, Dumper
     
 popular_post = """
 To all who have come from r/popular, welcome to r/Dogs! We are a discussion-based subreddit dedicated to support, inform, and advise dog owners.
@@ -36,19 +30,6 @@ def bot_login():
 
 	return r
 
-def run_command(comment, response_dict):
-        if response_dict["text"] in comment.body and (response_dict["flair"]=="" or response_dict["flair"] == comment.author_flair_text):
-                if response_dict["asReply"]==True:
-                        newComment = comment.reply(response_dict["response"])
-                        print("replied to comment for "+response_dict["text"]+" command")
-                else:
-                        newComment = comment.submission.reply(response_dict["response"])
-                        print("replied to post")
-                if response_dict["sticky"]==True:
-                        newComment.mod.distinguish(sticky=True)
-                return True
-        else:
-                return False
                 
 def run_bot(r):
     with open("posts.txt", mode="w+"):
