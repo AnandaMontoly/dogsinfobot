@@ -1,4 +1,5 @@
 import praw
+import os
 
     
 popular_post = """
@@ -22,18 +23,18 @@ If you wish to stick around, please feel free to comment in our Daily Bark threa
 """
 def bot_login():
         #put this in env variables
-	r = praw.Reddit(username = username,
-				password = password,
-				client_id = client_id,
-				client_secret = client_secret,
-				user_agent = user_agent)
+	r = praw.Reddit(username = os.environ.get("username"),
+				password = os.environ.get("password"),
+				client_id = os.environ.get("client_id"),
+				client_secret = os.environ.get("secret"),
+				user_agent = os.environ.get("user_agent"))
 
 	return r
 
                 
 def run_bot(r):
     with open("posts.txt", mode="w+"):
-        for post in r.subreddit("dogs").stream.submissions(skip_existing=True):
+        for post in r.subreddit("popular").stream.submissions(skip_existing=True):
             if post.subreddit == "dogs":
                 newComment = post.reply(popular_post)
                 newComment.mod.distinguish(sticky=True)
