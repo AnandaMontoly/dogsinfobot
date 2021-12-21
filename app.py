@@ -28,6 +28,7 @@ def bot_login():
 				client_id = os.environ.get("client_id"),
 				client_secret = os.environ.get("secret"),
 				user_agent = os.environ.get("user_agent"))
+	print("I logged in")
 
 	return r
 
@@ -38,6 +39,7 @@ def run_bot(r):
             if post.subreddit == "dogs":
                 newComment = post.reply(popular_post)
                 newComment.mod.distinguish(sticky=True)
+                print("made popular sticky post")
 
 if __name__ == "__main__":
     r = bot_login()
