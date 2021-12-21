@@ -41,6 +41,6 @@ def run_bot(r):
                 newComment.mod.distinguish(sticky=True)
                 print("made popular sticky post")
 
-if __name__ == "__main__":
-    r = bot_login()
-    run_bot(r)
+print("starting to run bot")
+r = bot_login()
+run_bot(r)
